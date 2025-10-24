@@ -85,7 +85,9 @@ public class Program
         sb.AppendLine("</body>");
         sb.AppendLine("</html>");
 
-        var outputFile = Path.Combine(Directory.GetCurrentDirectory(), "AishwaryaGS_C#Assignment.html");
+        var dir = new DirectoryInfo(AppContext.BaseDirectory);
+
+        var outputFile = Path.Combine(dir.Parent!.Parent!.Parent!.FullName, "AishwaryaGS_C#Assignment.html");
         File.WriteAllText(outputFile, sb.ToString());
 
     }
