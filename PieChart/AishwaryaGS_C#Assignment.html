@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Employee Hours - Pie Chart</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 16px; }
+    .chart-container { max-width: 900px; margin: 0 auto; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Employee Total Hours</h1>
+  <div class="chart-container">
+    <canvas id="hoursPie"></canvas>
+  </div>
+  <script>
+    const labels = ["Abhay Singh","John Black","Kavvay Verma","Mary Poppins","Patrick Huthinson","Raju Sunuwar","Rita Alley","Stewart Malachi","Tamoy Smith","Tim Perkinson"];
+    const data = [209.3,204.68,165.72,182.25,222,101.02,113.6,206.63,90.9,176.47];
+    const bgColors = labels.map((_, i) => `hsl(${(i * 360 / (labels.length || 1))}deg 65% 60%)`);
+    const borderColors = labels.map((_, i) => `hsl(${(i * 360 / (labels.length || 1))}deg 65% 40%)`);
+    const ctx = document.getElementById('hoursPie').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: data,
+          backgroundColor: bgColors,
+          borderColor: borderColors,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { position: 'right' },
+          tooltip: { callbacks: { label: (ctx) => `${ctx.label}: ${ctx.raw} hrs` } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
